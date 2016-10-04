@@ -1,10 +1,64 @@
 .pizza-card {
+    padding-bottom: 5px;
+    padding-top: 5px;
+    position: relative;
+    
   img {
     max-width: 250px;
   }
 
-  h3 {
-    color: @mainColor;
-    background-color: lighten(@mainColor, 45%);
+  h2 {
+      margin-top: 0;
+    color: darkorange;
   }
+}
+
+.caption{
+    
+    .pizza-type{
+        color:darkgrey;
+        font-size: 12px;
+        margin-top: 0;
+            margin-bottom: 0;
+    }
+    
+    .info{
+        margin-top: 15px;
+        text-align: center;
+        color: dimgray;
+        font-size: 15px;
+        
+        .size::before{     
+            content: "";
+            display: inline-block;
+            background: url("../images/size-icon.svg");    
+            height: 12px;
+            width: 12px;
+            margin-right: 2px;
+        }
+        
+        .weight::before{     
+            content: "";
+            display: inline-block;
+            background: url("../images/weight.svg");    
+            height: 12px;
+            width: 12px;
+            margin-right: 2px;
+        }
+        
+        .price{
+            margin-top: 10px;
+            color: #404040;
+            font-size: 27px;
+            font-weight: bold;
+        }
+        .currency{
+             color: #404040;
+            font-size: 16px;
+        }
+        
+        a{
+            margin-top: 7px;
+        }
+    }
 }
