@@ -12,17 +12,80 @@
     
     .menu-heading{
     text-align: center;       
-}
+    }
     
 .menu{
     margin-bottom: 10px;
     text-align: center; 
     ul{
-         display: inline-block;       
+         display: inline-block;
+        
     }
 }
+    
+    .my-color{ 
+            .active{
+                a{
+                background-color: darken(@mainColor,8%);
+            }
+                a:hover{
+                background-color: darken(@mainColor,8%);
+            }
+        }
+         a{
+                color: darken(@mainColor,8%);
+            }
+        a:hover{
+                 background-color: lighten(@mainColor,35%);
+            }
+    }
+ 
+    } 
 
+.bottom-footer{
+        height: 120px;
+        border-top: 1px solid #e6e6e6;
+        color: #404040;
+        text-align: center;
+        background-color: white;
+        font-size: 12px;
+        padding-right: 350px;
+        padding-top: 50px;
+    }
+
+
+
+.discount {
+    position: fixed;
+    bottom: 0;
+    left: 5px;
+    width: 100px;
+    height: 120px;
+    background-color: @mainColor;
+    margin-left: 10px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    z-index: 70;
+    
+    
+    img {
+        position: absolute;
+        top: -11px; 
+    }
+   
+    .discount-time {   
+        padding-top: 10px;
+        padding-bottom: 8px;  
+        text-align: center; 
+        margin-left: 10px;
+        margin-right: 10px;
+        border-bottom: 2px dotted darken(@mainColor, 15%);       
+    }
+   
+    .discount-strength {
+        padding-top: 10px;
+        padding-bottom: 8px;
+        text-align: center;            
+    }
 }
-
-
-
