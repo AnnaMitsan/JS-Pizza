@@ -1,81 +1,118 @@
-/**
- * Created by chaika on 02.02.16.
- */
 var Templates = require('../Templates');
-
-//Перелік розмірів піци
+var storage = require("./storage");
 var PizzaSize = {
     Big: "big_size",
     Small: "small_size"
 };
 
-//Змінна в якій зберігаються перелік піц в кошику
 var Cart = [];
-
-//HTML едемент куди будуть додаватися піци
+var saveCart = storage.get("cart");
 var $cart = $("#cart");
+var $count=$("#count");
+var $sum=$("#sum");
+var summa=0;
+var res=0;
 
-function addToCart(pizza, size) {
-    //Додавання однієї піци в кошик покупок
 
-    //Приклад реалізації, можна робити будь-яким іншим способом
-    Cart.push({
+if(saveCart){
+    Cart = saveCart;
+    $(".pre-order").addClass("hidden");
+    $(".item").removeClass("hidden");
+    $(".bottom-order-buy").removeClass("hidden");
+}
+
+
+function initialiseCart() {
+    if(Cart.length==0){
+    $(".pre-order").removeClass("hidden");
+    $(".item").addClass("hidden");
+    $(".bottom-order-buy").addClass("hidden");
+    $(".bottom-order-start").removeClass("hidden");
+    }
+    updateCart();
+}
+
+function addToCart(pizza, size) {   
+     Cart.push({
         pizza: pizza,
         size: size,
         quantity: 1
-    });
-
-    //Оновити вміст кошика на сторінці
+    }); 
+  
+    
+    $(".pre-order").addClass("hidden");
+    $(".item").removeClass("hidden");
+    $(".bottom-order-buy").removeClass("hidden");
+    $(".bottom-order-start").addClass("hidden");
     updateCart();
 }
 
-function removeFromCart(cart_item) {
-    //Видалити піцу з кошика
-    //TODO: треба зробити
-
-    //Після видалення оновити відображення
+function removeFromCart(cart_item) { 
+    var index=Cart.indexOf(cart_item);
+    if(index>-1){
+        Cart.splice(index,1)
+    }
+    if(Cart.length==0){
+    clearCart();}
     updateCart();
 }
 
-function initialiseCart() {
-    //Фукнція віпрацьвуватиме при завантаженні сторінки
-    //Тут можна наприклад, зчитати вміст корзини який збережено в Local Storage то показати його
-    //TODO: ...
-
-    updateCart();
-}
 
 function getPizzaInCart() {
-    //Повертає піци які зберігаються в кошику
     return Cart;
 }
 
+function clearCart(){
+    Cart=[];
+    updateCart();
+    $(".pre-order").removeClass("hidden");
+    $(".item").addClass("hidden");
+    $(".bottom-order-buy").addClass("hidden");
+    $(".bottom-order-start").removeClass("hidden");
+    storage.clear;
+}
+
 function updateCart() {
-    //Функція викликається при зміні вмісту кошика
-    //Тут можна наприклад показати оновлений кошик на екрані та зберегти вміт кошика в Local Storage
-
-    //Очищаємо старі піци в кошику
     $cart.html("");
-
-    //Онволення однієї піци
+     $count.text(Cart.length);
+    res=0;
+    //Оновлення однієї піци
     function showOnePizzaInCart(cart_item) {
-        var html_code = Templates.PizzaCart_OneItem(cart_item);
-
+        var html_code = Templates.PizzaCart_OneItem(cart_item);  
+        var $clear=$("#clear");      
         var $node = $(html_code);
-
-        $node.find(".plus").click(function(){
-            //Збільшуємо кількість замовлених піц
-            cart_item.quantity += 1;
-
-            //Оновлюємо відображення
-            updateCart();
+        
+        var $itemPrice= parseInt($node.find("#item-price").text());   
+        summa =$itemPrice * cart_item.quantity;
+        $node.find("#item-price").text(summa);
+     
+        
+        $clear.click(function(){
+            clearCart();
         });
-
+        
+        $node.find(".plus").click(function(){                     
+          cart_item.quantity += 1;
+           updateCart();
+        });
+        
+        $node.find(".minus").click(function(){
+            cart_item.quantity -= 1; 
+            updateCart();
+            if(cart_item.quantity<1){
+                removeFromCart(cart_item);
+            };
+        });
+        
+        $node.find(".delete").click(function(){
+            removeFromCart(cart_item);
+        });
+        res =res+summa;
+        $sum.text(res);
         $cart.append($node);
     }
-
-    Cart.forEach(showOnePizzaInCart);
-
+    Cart.forEach(showOnePizzaInCart); 
+    storage.set("cart", Cart); 
 }
 
 exports.removeFromCart = removeFromCart;

@@ -3,23 +3,43 @@
     padding-top: 5px;
     position: relative;
     
-  img {
+  .icon {
     max-width: 250px;
   }
 
-  h2 {
-    margin-top: 0;
-    color: darkorange;
-  }
 }
 
-.caption{
+.label{
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    font-size: 19px;
     
-    .pizza-type{
-        color:darkgrey;
-        font-size: 12px;
-        margin-top: 0;
+    
+}
+
+.title {
+    margin-top: 0;
+    color: darkorange;
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+ 
+    .type{
+        color:grey;
+        font-size: 13px;
+        margin-top: 3px;
         margin-bottom: 0;
+       
+    }
+    
+    .description{
+        color: black;
+         font-size: 16px;
+        margin-top: 1px;
+        margin-bottom: 0;
+         height: 70px;
     }
     
     .info{
@@ -27,6 +47,7 @@
         text-align: center;
         color: dimgray;
         font-size: 15px;
+      
         
         .price{
             margin-top: 10px;
@@ -39,11 +60,11 @@
             font-size: 16px;
         }
         
-        a{
+        button{
             margin-top: 7px;
         }
     }
-}
+
 
 .size::before{     
             content: "";

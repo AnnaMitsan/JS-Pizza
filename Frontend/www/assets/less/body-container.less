@@ -12,14 +12,110 @@
     
     .menu-heading{
     text-align: center;       
+    }.top-header {
+    height: 90px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    padding-left: 140px;
+    padding-right: 350px;  
+    z-index: 1;
+    
+    &.background-header {
+        background-color: black;
+        opacity: 0.8;
     }
     
+    .top-row {
+        width: 100%;
+        height: 40px;
+        margin-top: 1px;
+        color: #bfbfbf;
+        box-sizing: border-box;
+        border-bottom-color: #bfbfbf;
+        border-bottom: 1px solid;
+                 
+        .info-telephone{
+            padding-top: 3px;          
+            display: inline-block;
+            font-size: 20px;                       
+        }
+       
+        .info-worktime{
+             padding-top: 3px;
+             margin-left: 40px;
+             display: inline-block;
+             font-size: 13px;
+        }
+        
+        .info-delivery{
+             padding-top: 3px;
+             margin-left: 40px;
+             display: inline-block;
+             font-size: 17px;
+        }
+        
+        .log{
+            float: right;
+            margin-top: 1px;
+        }
+        
+    }
+    
+    .bottom-row {
+        width: 100%;
+        height: 40px;
+        margin-top: 3px;
+        color: azure;
+        box-sizing: border-box;
+        padding-top: 5px;
+        
+        .gopizza{        
+            a{
+                color: white;
+                font-size: 17px;
+            }
+            
+        }
+    }
+}
+
+.brand-logo {
+    position: fixed;
+    top: 0;
+    left: 5px;
+    width: 100px;
+    height: 90px;
+    background-color: @mainColor;
+    margin-left: 10px;
+    color: white;
+   
+    img {
+        position: absolute;
+        bottom: -11px;
+        transform: rotate(180deg);
+    }
+   
+    .lower {
+        text-align: center;
+        font-size: 18px;
+        margin-top: 15px;
+    }
+   
+    .upper {
+        text-align: center;
+        font-size: 25px;
+    }
+}
+
+
+    
 .menu{
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     text-align: center; 
     ul{
          display: inline-block;
-        
+        cursor: pointer;
     }
 }
     
