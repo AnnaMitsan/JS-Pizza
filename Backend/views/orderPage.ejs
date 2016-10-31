@@ -1,20 +1,21 @@
 <% include common/header.ejs %>
 
+   
 
 <div class="all-page">
         
-        <div class="order-form">
+        <div class="order-form" id="div-order">
     <div class="client-info">
                 <div class="contact">
                    <h3> Контактні дані  </h3>
                 </div>
                 <div class="row">
                     <div class="col-md-7">
-                        <form class="form-horizontal ">
+                        <form class="form-horizontal " data-toggle="validator">
                             <div class="form-group name-group">
                                 <label class="col-sm-2 control-label">Ім’я</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="text" id="inputName" placeholder="Ім’я, Прізвище">
+                                    <input class="form-control has-success" type="text" id="inputName" placeholder="Ім’я, Прізвище">
                                 </div>
                             <span class="name-help-block" style="display:none">
                                 Введіть тільки власне ім’я, без цифр
@@ -38,7 +39,8 @@
                                 Введіть адресу доставки піци
                             </span>
                             </div>
-                        </form>
+                        </form> 
+                        
                     </div>
                     <div class="col-md-5">
                         <div class="order-summary">
@@ -64,9 +66,7 @@
                     </div>
                 </div>
             </div>
-            <div class="google-maps" id="googleMap">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d20317.121444303502!2d30.480460318116013!3d50.46642475151629!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1suk!2sua!4v1476999195591" width="1000" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
-            </div>
+            <div class="google-maps" id="googleMap"></div>
     
     </div>
         <div class="order">
@@ -77,10 +77,7 @@
             </div>
 
             <div id="cart" class="creating-order">
-            
-            
-           
-            
+       
             </div>
             
              <div class="bottom-order-buy hidden">
@@ -96,6 +93,10 @@
     </div>
     
     
+<div id="liqpay"></div>
 
-
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCpeUtPil0cNFD_7KzBb8s0FqrO5qBV9f4">
+</script>
+ 
+<script src="//static.liqpay.com/libjs/checkout.js"> </script>
 <% include common/footer.ejs %>

@@ -12,32 +12,15 @@ function configureEndpoints(app) {
     app.get('/api/get-pizza-list/', api.getPizzaList);
     app.post('/api/create-order/', api.createOrder);
 
-    app.get('/index.html', pages.mainPage);
-    //app.get('/create-order.html', pages.orderPage);
-    
-    app.get('/profile/*', function(req,res, next){
-        console.log("middleware");
-        req.user={
-           // id: Math.random(),
-            name: "name"
-        }
-       
-        next();
-    });
-    
-    app.get('/profile/id', function(req,res){
-        res.send(200,req.user.id);
-    });
-    //Сторінки
-    //Головна сторінка
     app.get('/', pages.mainPage);
-
-    //Сторінка замовлення
     app.get('/order.html', pages.orderPage);
+    app.get('/index.html', pages.mainPage);
 
     //Якщо не підійшов жоден url, тоді повертаємо файли з папки www
     app.use(express.static(path.join(__dirname, '../Frontend/www')));
-}
+    
+};
+ 
 
 function startServer(port) {
     //Створюється застосунок

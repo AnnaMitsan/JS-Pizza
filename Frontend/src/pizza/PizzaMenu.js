@@ -1,6 +1,6 @@
 var Templates = require('../Templates');
 var PizzaCart = require('./PizzaCart');
-var Pizza_List = require('../Pizza_List');
+//var Pizza_List = require('../Pizza_List');
 
 //HTML едемент куди будуть додаватися піци
 var $pizza_list = $("#pizza_list");
@@ -91,6 +91,7 @@ function showPizzaList(list) {
     }
 
     list.forEach(showOnePizza);
+    $(".list").text(list.length);
 }
 
 function filterPizza(filter) {
@@ -108,9 +109,9 @@ function filterPizza(filter) {
     showPizzaList(pizza_shown);
 }
 
-function initialiseMenu() {
+function initialiseMenu(pizza_list) {
     $("#filter-all").addClass("active");
-    showPizzaList(Pizza_List);
+    showPizzaList(pizza_list);
 }
 
 exports.filterPizza = filterPizza;

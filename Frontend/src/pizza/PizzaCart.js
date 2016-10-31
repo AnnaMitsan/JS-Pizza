@@ -12,6 +12,7 @@ var $cart = $("#cart");
 var $count=$("#count");
 var $sum=$("#sum");
 var $buy=$(".buy");
+
 var summa=0;
 var res=0;
 
@@ -35,28 +36,45 @@ function initialiseCart() {
     }
     else{
          $(".pizza-word").addClass("hidden");
-      $buy.click(function(){
+    
+        
+        $buy.click(function(){
+          createOrderOnServer();
+       
           $(".pizza-word").removeClass("hidden");
-          API.createOrder("info", "callback");
-      });  
+         // API.createOrder("info", "callback");
+      
+        
+        });  
     }
     updateCart();
 }
 
 function addToCart(pizza, size) {   
-     Cart.push({
-        pizza: pizza,
-        size: size,
-        quantity: 1
-    }); 
-  
-    
+ var newPizza = {
+          pizza: pizza,
+          size: size,
+          quantity: 1
+         };
+
+         var index = -1;
+         Cart.forEach(function(item) {
+             if (newPizza.pizza.id==item.pizza.id && newPizza.size==item.size)
+                 index = Cart.indexOf(item);
+         });
+     if (index==-1) {
+         Cart.push(newPizza);
+     } else {
+         Cart[index].quantity++;
+     }
+
     $(".pre-order").addClass("hidden");
     $(".item").removeClass("hidden");
     $(".bottom-order-buy").removeClass("hidden");
     $(".bottom-order-start").addClass("hidden");
     updateCart();
 }
+
 
 function removeFromCart(cart_item) { 
     var index=Cart.indexOf(cart_item);
@@ -126,6 +144,30 @@ function updateCart() {
     storage.set("cart", Cart); 
 }
 
+
+function createOrderOnServer(){
+    API.createOrder(Cart, function(err, data){
+        if(err){
+            alert("Order creation failed");
+        }
+        else{
+            console.log("order created"+JSON.stringify(data));
+            
+             $(".next-button").click(function(){
+                  LiqPayCheckout.init({
+            data: data.data,
+            signature: data.signature,
+            embedTo: "#liqpay",
+            mode: "popup" // embed || popup
+            }).on("liqpay.callback", function(data){ console.log(data.status); console.log(data);
+            }).on("liqpay.ready", function(data){ // ready
+            }).on("liqpay.close", function(data){
+            // close
+            });
+             })               
+        }
+    })
+}
 exports.removeFromCart = removeFromCart;
 exports.addToCart = addToCart;
 
