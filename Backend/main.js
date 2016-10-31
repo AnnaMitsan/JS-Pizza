@@ -12,6 +12,8 @@ function configureEndpoints(app) {
     app.get('/api/get-pizza-list/', api.getPizzaList);
     app.post('/api/create-order/', api.createOrder);
 
+    app.get('/index.html', pages.mainPage);
+    //app.get('/create-order.html', pages.orderPage);
     
     app.get('/profile/*', function(req,res, next){
         console.log("middleware");

@@ -1,0 +1,101 @@
+<% include common/header.ejs %>
+
+
+<div class="all-page">
+        
+        <div class="order-form">
+    <div class="client-info">
+                <div class="contact">
+                   <h3> Контактні дані  </h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-7">
+                        <form class="form-horizontal ">
+                            <div class="form-group name-group">
+                                <label class="col-sm-2 control-label">Ім’я</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="text" id="inputName" placeholder="Ім’я, Прізвище">
+                                </div>
+                            <span class="name-help-block" style="display:none">
+                                Введіть тільки власне ім’я, без цифр
+                            </span>
+                            </div>
+                            <div class="form-group phone-group">
+                                <label class="col-sm-2 control-label">Телефон</label>
+                                <div class="col-sm-10">
+                                    <input  class="form-control" type="text" id="inputPhone" placeholder="+380931112233">
+                                </div>
+                            <span class="phone-help-block" style="display:none">
+                                Введіть номер телефону у форматі +380 або почніть з 0
+                            </span>
+                            </div>
+                            <div class="form-group address-group">
+                                <label class="col-sm-2 control-label">Адреса</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="text" id="inputAdress" placeholder="Київ, вул. Спаська, 2">
+                                </div>
+                            <span class="address-help-block" style="display:none">
+                                Введіть адресу доставки піци
+                            </span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="order-summary">
+                            <h4>Інформація про замовлення</h4>
+                            <p class="delivery-time">
+                                <b>Приблизний час доставки:</b> невідомий
+                            </p>
+                            <p class="delivery-adress">
+                                <b>Адреса доставки:</b> невідома
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group next-step-wrap">
+                        <div class="next-step-width">
+                            <button  type="button" class="btn btn-warning btn-block next-button">
+                                Далі
+                                <i class="glyphicon glyphicon-chevron-right icon-white">
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="google-maps" id="googleMap">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d20317.121444303502!2d30.480460318116013!3d50.46642475151629!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1suk!2sua!4v1476999195591" width="1000" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+    
+    </div>
+        <div class="order">
+            <div class="top-order">
+                <div class="order-heading">
+                    Замовлення <span class="badge" id="count"></span>
+                </div>
+            </div>
+
+            <div id="cart" class="creating-order">
+            
+            
+           
+            
+            </div>
+            
+             <div class="bottom-order-buy hidden">
+                    <div class="heading">Сумма замовлення:</div>
+                        <div class="sum-info" >
+                            <div class="sum" id="sum"></div>
+                  <div class="currency"> грн.</div></div>
+                <a class="btn btn-default edit" href="/index.html">
+                        Редагувати замовлення
+                    </a>
+                </div>
+        </div>  
+    </div>
+    
+    
+
+
+<% include common/footer.ejs %>

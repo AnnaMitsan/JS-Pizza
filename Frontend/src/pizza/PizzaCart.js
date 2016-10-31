@@ -1,5 +1,6 @@
 var Templates = require('../Templates');
 var storage = require("./storage");
+var API=require("../API");
 var PizzaSize = {
     Big: "big_size",
     Small: "small_size"
@@ -10,6 +11,7 @@ var saveCart = storage.get("cart");
 var $cart = $("#cart");
 var $count=$("#count");
 var $sum=$("#sum");
+var $buy=$(".buy");
 var summa=0;
 var res=0;
 
@@ -18,6 +20,7 @@ if(saveCart){
     Cart = saveCart;
     $(".pre-order").addClass("hidden");
     $(".item").removeClass("hidden");
+     $(".pizza-word").addClass("hidden");
     $(".bottom-order-buy").removeClass("hidden");
 }
 
@@ -26,8 +29,16 @@ function initialiseCart() {
     if(Cart.length==0){
     $(".pre-order").removeClass("hidden");
     $(".item").addClass("hidden");
+    $(".pizza-word").addClass("hidden");
     $(".bottom-order-buy").addClass("hidden");
     $(".bottom-order-start").removeClass("hidden");
+    }
+    else{
+         $(".pizza-word").addClass("hidden");
+      $buy.click(function(){
+          $(".pizza-word").removeClass("hidden");
+          API.createOrder("info", "callback");
+      });  
     }
     updateCart();
 }

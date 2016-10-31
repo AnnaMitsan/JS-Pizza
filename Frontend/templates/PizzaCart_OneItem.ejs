@@ -1,5 +1,6 @@
 <div class="item">
-                <div class="item-name"><%= pizza.title %> <% if(size==="small_size") {
+                <div class="item-name"><%= pizza.title %> 
+                    <% if(size==="small_size") {
                                 var pizzaSize = "Мала";
                                 %>           
                    (<%= pizzaSize %>)<% } %>
@@ -17,6 +18,7 @@
                 <div class="item-count">
                 <button class="minus glyphicon glyphicon-minus"></button>
                 <span class="number"><%= quantity %></span>
+                  <span class="pizza-word"> пiца</span>
                 <button class="plus glyphicon glyphicon-plus"></button>
                 <button class="delete glyphicon glyphicon-remove"></button>
                 </div>

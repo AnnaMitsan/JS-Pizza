@@ -1,7 +1,71 @@
 <% include common/header.ejs %>
 
-<div class="">
-    Main Page Content
-</div>
 
+    <div class="all-page">
+        <div class="shop">
+            <div class="menu-heading">
+                <h3>Усі піци <span class="badge list">9</span></h3>
+            </div>
+            <div class="menu">
+                <ul class="nav nav-pills my-color">
+                    <li role="presentation" id="filter-all">
+                        <a >Усі</a>
+                    </li>
+                    <li role="presentation" id="filter-meat">
+                        <a  >М'ясні</a>
+                    </li>
+                    <li role="presentation" id="filter-pineapple">
+                        <a >З ананасами</a>
+                    </li>
+                    <li role="presentation" id="filter-mushroom">
+                        <a >З грибами</a>
+                    </li>
+                    <li role="presentation" id="filter-ocean">
+                        <a >З морепродуктами</a>
+                    </li>
+                    <li role="presentation" id="filter-vega">
+                        <a  >Вега</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="row" id="pizza_list"></div>
+        </div>
+        <div class="order">
+            <div class="top-order">
+                <div class="order-heading">
+                    Замовлення <span class="badge" id="count"></span>
+                </div>
+                <div class="clear-order">
+                    <span id="clear">Очистити замовлення</span>
+                </div>
+            </div>
+            <div class="pre-order hidden">
+                <div>
+                    Пусто в холодильнику?
+                </div>
+                <div>
+                    Замов піцу!
+                </div>
+            </div>
+            <div id="cart" class="edit-order"></div>
+            <div class="bottom-order-start" >
+                    <button class="btn btn-warning buy" disabled>
+                        Замовити
+                    </button>
+            </div>
+             <div class="bottom-order-buy hidden">
+                    <div class="heading">Сумма замовлення:</div>
+                        <div class="sum-info" >
+                            <div class="sum" id="sum"></div>
+                  <div class="currency"> грн.</div></div>
+               
+                    <a href="/order.html" class="btn btn-warning buy"> Замовити</a>
+                   
+                 
+                </div>
+        </div>  
+    </div>
+    
+    
+    
 <% include common/footer.ejs %>
