@@ -12,7 +12,7 @@ var $cart = $("#cart");
 var $count=$("#count");
 var $sum=$("#sum");
 var $buy=$(".buy");
-
+var totalSum=0;
 var summa=0;
 var res=0;
 
@@ -37,19 +37,23 @@ function initialiseCart() {
     else{
          $(".pizza-word").addClass("hidden");
     
-        
         $buy.click(function(){
-          createOrderOnServer();
-       
-          $(".pizza-word").removeClass("hidden");
-         // API.createOrder("info", "callback");
-      
+          $(".pizza-word").removeClass("hidden");  
+        }); 
         
-        });  
+        $(".next-button").click(function(){
+            createOrderOnServer();
+            console.log("total sum", getOrderSum());
+        });
+        
+        
     }
-    updateCart();
+    updateCart();  
 }
 
+function getOrderSum(){
+    return $("#totalSum").text();  
+}
 function addToCart(pizza, size) {   
  var newPizza = {
           pizza: pizza,
@@ -137,11 +141,14 @@ function updateCart() {
             removeFromCart(cart_item);
         });
         res =res+summa;
+      //  totalSum=res;
         $sum.text(res);
+        
         $cart.append($node);
     }
     Cart.forEach(showOnePizzaInCart); 
     storage.set("cart", Cart); 
+    $("#totalSum").text(res);
 }
 
 
@@ -151,10 +158,8 @@ function createOrderOnServer(){
             alert("Order creation failed");
         }
         else{
-            console.log("order created"+JSON.stringify(data));
-            
-             $(".next-button").click(function(){
-                  LiqPayCheckout.init({
+            //console.log("order created"+JSON.stringify(data));        
+            LiqPayCheckout.init({
             data: data.data,
             signature: data.signature,
             embedTo: "#liqpay",
@@ -164,14 +169,15 @@ function createOrderOnServer(){
             }).on("liqpay.close", function(data){
             // close
             });
-             })               
         }
     })
 }
+
 exports.removeFromCart = removeFromCart;
 exports.addToCart = addToCart;
 
 exports.getPizzaInCart = getPizzaInCart;
+exports.getOrderSum=getOrderSum;
 exports.initialiseCart = initialiseCart;
 
 exports.PizzaSize = PizzaSize;

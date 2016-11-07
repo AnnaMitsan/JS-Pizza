@@ -17,7 +17,7 @@ var order = {
 version: 3,
 public_key: LIQPAY_PUBLIC_KEY, 
 action: "pay",
-amount: 568.00,
+amount: 300,
 currency: "UAH",
 description: "Опис транзакції", 
 order_id: Math.random(),
@@ -28,10 +28,11 @@ exports.getPizzaList = function(req, res) {
 };
 
 exports.createOrder = function(req, res) {
+   // var s=$("#sum").text();
     var order_info = req.body;
-    console.log("Creating Order", order_info);  
-    
-    var data = base64(JSON.stringify(order));
+    console.log( "Creating Order", order_info);  
+   // console.log("sum text ", s);
+var data = base64(JSON.stringify(order));
 var signature = sha1(LIQPAY_PRIVATE_KEY + data + LIQPAY_PRIVATE_KEY);
 
     res.send({
